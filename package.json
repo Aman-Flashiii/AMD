@@ -1,0 +1,26 @@
+{
+  "name": "amd-project",
+  "version": "1.0.0",
+  "description": "A live single-page dashboard for the GPU-accelerated number theory engine.",
+  "main": "server.js",
+  "scripts": {
+    "kill-port": "powershell -Command \"$m = (netstat -ano | Select-String ':5000 '); if ($m) { $p = $m.ToString().Trim().Split(' ')[-1]; if ($p -match '^\\d+$') { taskkill /PID $p /F 2>$null; Start-Sleep -Milliseconds 500 } }\"",
+    "prestart": "npm run kill-port",
+    "start": "node server.js",
+    "backend": "node server.js",
+    "frontend": "npx -y http-server . -p 3000 -c-1 -o --cors",
+    "dev": "concurrently --kill-others-on-fail --names \"BACKEND,FRONTEND\" --prefix-colors \"cyan,magenta\" \"npm run backend\" \"npm run frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3"
+  }
+}
