@@ -1,0 +1,6 @@
+# Python dependencies for the Prime Gap Engine benchmarking & visualization utilities
+flask>=3.0.0
+flask-socketio>=5.3.6
+plotly>=5.18.0
+pandas>=2.0.0
+matplotlib>=3.7.0
